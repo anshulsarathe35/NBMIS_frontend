@@ -53,6 +53,7 @@ useEffect(() => {
   }, []);
 
   const fetchReceipts = async () => {
+    console.log(import.meta.env.VITE_API_BASE_URL)
     const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/receipt?date=${date}`);
     const receiptMap = {};
     let grandTotal = 0;

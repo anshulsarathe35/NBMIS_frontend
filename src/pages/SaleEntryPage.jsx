@@ -867,6 +867,8 @@ useEffect(() => {
 useEffect(() => {
     if (!selectedDate) return;
     setLoading(true);
+
+  
   
     axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/sale?date=${selectedDate}`)
       .then(res => {
