@@ -105,7 +105,7 @@ const handleSubmit = async () => {
       }
   
       await Promise.all(entries.map((entry) =>
-        axios.post('/api/receipt', entry, {
+        axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/receipt`, entry, {
           headers: { Authorization: `Bearer ${token}` },
         })
       ));
