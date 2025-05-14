@@ -805,7 +805,7 @@ const fetchReports = async () => {
     try {
       setLoading(true);
       const token = localStorage.getItem('token');
-      const res = await axios.get('/api/report', {
+      const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/report`, {
         params: { startDate, endDate },
         headers: {
           Authorization: `Bearer ${token}`,
@@ -845,7 +845,7 @@ const fetchReports = async () => {
 const downloadFile = async (format, type) => {
     try {
       const token = localStorage.getItem("token"); // make sure token is stored in localStorage
-      const res = await axios.get(`/api/report/${type}/${format}`, {
+      const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/report/${type}/${format}`, {
         params: { startDate, endDate },
         responseType: 'blob',
         headers: {
