@@ -177,7 +177,7 @@ const Navbar = () => {
       <div className="flex items-center justify-between">
         {/* Logo and Edition */}
         <div className="flex items-center space-x-4">
-          <img src="src/assets/nblogo.webp" alt="logo" className=" rounded" />
+          <img src="/nblogo.webp" alt="logo" className=" rounded" />
           {user && (
             <span className="hidden sm:inline-block text-sm bg-white text-black rounded px-2 py-1 font-semibold">
               Edition: {user.branch}
