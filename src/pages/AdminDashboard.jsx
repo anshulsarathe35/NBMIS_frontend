@@ -189,7 +189,7 @@ const AdminDashboard = () => {
   const applyChanges = async (id) => {
     try {
       const { canSale, canReceipt, canReport } = editedUsers[id];
-      await axios.put(`http://localhost:5000/api/admin/users/${id}/permissions`, {
+      await axios.put(`${import.meta.env.VITE_API_BASE_URL}/api/admin/users/${id}/permissions`, {
         canSale,
         canReceipt,
         canReport,
