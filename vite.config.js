@@ -14,7 +14,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/api': 'http://localhost:5000',  // Forward API requests to the backend
+      '/api': 'https://nbmis-backend.vercel.app',  // Forward API requests to the backend
     },
   },
 })
