@@ -1,0 +1,29 @@
+frontend/
+├── public/
+├── src/
+│   ├── assets/
+│   ├── components/
+│   │   ├── Navbar.jsx
+│   │   ├── ProtectedRoute.jsx
+│   ├── context/
+│   │   └── AuthContext.jsx
+│   ├── pages/
+│   │   ├── Login.jsx
+│   │   ├── Register.jsx
+│   │   ├── Dashboard.jsx
+│   │   ├── Districts.jsx
+│   │   ├── Sales.jsx
+│   │   ├── Receipts.jsx
+│   │   ├── Reports.jsx
+│   ├── services/
+│   │   ├── authService.js
+│   │   ├── districtService.js
+│   │   ├── saleService.js
+│   │   ├── receiptService.js
+│   │   ├── reportService.js
+│   ├── App.jsx
+│   ├── main.jsx
+│   ├── index.css
+├── .env
+├── package.json
+├── vite.config.js
