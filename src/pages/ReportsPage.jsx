@@ -869,124 +869,244 @@ const downloadFile = async (format, type) => {
   if (checkingPermission) return <p className="p-6">Checking permissions...</p>;
   if (!canReport) return <p className="p-6 text-red-600 font-semibold">You do not have permission to access this page.</p>;
 
-  return (
-    <div className="bg-gray-200">
-      <div className="p-6 max-w-7xl mx-6">
-        <h2 className="text-3xl font-bold mb-4">Reports</h2>
+//   return (
+//     <div className="bg-gray-200">
+//       <div className="p-6 max-w-7xl mx-6">
+//         <h2 className="text-3xl font-bold mb-4">Reports</h2>
 
-        <div className="flex gap-4 mb-4">
-          <input
-            type="date"
-            value={startDate}
-            onChange={(e) => setStartDate(e.target.value)}
-            className="border p-3 rounded-full shadow font-semibold"
-          />
-          <input
-            type="date"
-            value={endDate}
-            onChange={(e) => setEndDate(e.target.value)}
-            className="border p-3 rounded-full shadow font-semibold"
-          />
+//         <div className="flex gap-4 mb-4">
+//           <input
+//             type="date"
+//             value={startDate}
+//             onChange={(e) => setStartDate(e.target.value)}
+//             className="border p-3 rounded-full shadow font-semibold"
+//           />
+//           <input
+//             type="date"
+//             value={endDate}
+//             onChange={(e) => setEndDate(e.target.value)}
+//             className="border p-3 rounded-full shadow font-semibold"
+//           />
+//           <button
+//             onClick={fetchReports}
+//             className="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700"
+//           >
+//             Get Report
+//           </button>
+//         </div>
+
+//         {loading && <p className="text-gray-500">Loading...</p>}
+
+//         {sales.length > 0 && (
+//           <div className="mb-6">
+//             <h3 className="text-xl font-semibold mb-2">Sales Report</h3>
+//             <table className="w-full table-auto border">
+//               <thead className="bg-gray-400">
+//                 <tr>
+//                   <th className="border px-4 py-2">District</th>
+//                   <th className="border px-4 py-2">Date</th>
+//                   <th className="border px-4 py-2">Cash</th>
+//                   <th className="border px-4 py-2">Private</th>
+//                   <th className="border px-4 py-2">Gov</th>
+//                 </tr>
+//               </thead>
+//               <tbody>
+//                 {sales.map((s, idx) => (
+//                   <tr key={idx} className="font-semibold">
+//                     <td className="border px-4 py-2">{s.district?.name}</td>
+//                     <td className="border px-4 py-2">{s.date}</td>
+//                     <td className="border px-4 py-2">{s.cash ?? 0}</td>
+// <td className="border px-4 py-2">{s.private ?? 0}</td>
+// <td className="border px-4 py-2">{s.gov ?? 0}</td>
+
+
+//                   </tr>
+//                 ))}
+//               </tbody>
+//             </table>
+//           </div>
+//         )}
+
+//         {receipts.length > 0 && (
+//           <div className="mb-6">
+//             <h3 className="text-xl font-semibold mb-2">Receipts Report</h3>
+//             <table className="w-full table-auto border">
+//               <thead className="bg-gray-400">
+//                 <tr>
+//                   <th className="border px-4 py-2">District</th>
+//                   <th className="border px-4 py-2">Date</th>
+//                   <th className="border px-4 py-2">Cash</th>
+//                   <th className="border px-4 py-2">Private</th>
+//                   <th className="border px-4 py-2">Gov</th>
+//                 </tr>
+//               </thead>
+//               <tbody>
+//                 {receipts.map((r, idx) => (
+//                   <tr key={idx} className="font-semibold">
+//                     <td className="border px-4 py-2">{r.district?.name}</td>
+//                     <td className="border px-4 py-2">{r.date}</td>
+//                     <td className="border px-4 py-2">{r.cash ?? 0}</td>
+// <td className="border px-4 py-2">{r.private ?? 0}</td>
+// <td className="border px-4 py-2">{r.gov ?? 0}</td>
+
+//                   </tr>
+//                 ))}
+//               </tbody>
+//             </table>
+//           </div>
+//         )}
+
+//         {(sales.length > 0 || receipts.length > 0) && (
+//           <div className="flex flex-wrap gap-4">
+//             <button
+//               onClick={() => downloadFile('excel', 'sales')}
+//               className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+//             >
+//               Download Sales Excel
+//             </button>
+//             <button
+//               onClick={() => downloadFile('pdf', 'sales')}
+//               className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
+//             >
+//               Download Sales PDF
+//             </button>
+//             <button
+//               onClick={() => downloadFile('excel', 'receipts')}
+//               className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+//             >
+//               Download Receipts Excel
+//             </button>
+//             <button
+//               onClick={() => downloadFile('pdf', 'receipts')}
+//               className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
+//             >
+//               Download Receipts PDF
+//             </button>
+//           </div>
+//         )}
+//       </div>
+//     </div>
+//   );
+return (
+  <div className="bg-gray-200 min-h-screen">
+    <div className="p-4 sm:p-6 max-w-7xl mx-auto">
+      <h2 className="text-2xl sm:text-3xl font-bold mb-4">Reports</h2>
+
+      {/* Date Range and Button */}
+      <div className="flex flex-col sm:flex-row gap-4 mb-6">
+        <input
+          type="date"
+          value={startDate}
+          onChange={(e) => setStartDate(e.target.value)}
+          className="border p-3 rounded-full shadow font-semibold w-full sm:w-auto"
+        />
+        <input
+          type="date"
+          value={endDate}
+          onChange={(e) => setEndDate(e.target.value)}
+          className="border p-3 rounded-full shadow font-semibold w-full sm:w-auto"
+        />
+        <button
+          onClick={fetchReports}
+          className="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 w-full sm:w-auto"
+        >
+          Get Report
+        </button>
+      </div>
+
+      {/* Loading */}
+      {loading && <p className="text-gray-500">Loading...</p>}
+
+      {/* Sales Report */}
+      {sales.length > 0 && (
+        <div className="mb-6 overflow-x-auto">
+          <h3 className="text-xl font-semibold mb-2">Sales Report</h3>
+          <table className="min-w-full border table-auto text-sm sm:text-base">
+            <thead className="bg-gray-400">
+              <tr>
+                <th className="border px-4 py-2">District</th>
+                <th className="border px-4 py-2">Date</th>
+                <th className="border px-4 py-2">Cash</th>
+                <th className="border px-4 py-2">Private</th>
+                <th className="border px-4 py-2">Gov</th>
+              </tr>
+            </thead>
+            <tbody>
+              {sales.map((s, idx) => (
+                <tr key={idx} className="font-semibold">
+                  <td className="border px-4 py-2">{s.district?.name}</td>
+                  <td className="border px-4 py-2">{s.date}</td>
+                  <td className="border px-4 py-2">{s.cash ?? 0}</td>
+                  <td className="border px-4 py-2">{s.private ?? 0}</td>
+                  <td className="border px-4 py-2">{s.gov ?? 0}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+
+      {/* Receipts Report */}
+      {receipts.length > 0 && (
+        <div className="mb-6 overflow-x-auto">
+          <h3 className="text-xl font-semibold mb-2">Receipts Report</h3>
+          <table className="min-w-full border table-auto text-sm sm:text-base">
+            <thead className="bg-gray-400">
+              <tr>
+                <th className="border px-4 py-2">District</th>
+                <th className="border px-4 py-2">Date</th>
+                <th className="border px-4 py-2">Cash</th>
+                <th className="border px-4 py-2">Private</th>
+                <th className="border px-4 py-2">Gov</th>
+              </tr>
+            </thead>
+            <tbody>
+              {receipts.map((r, idx) => (
+                <tr key={idx} className="font-semibold">
+                  <td className="border px-4 py-2">{r.district?.name}</td>
+                  <td className="border px-4 py-2">{r.date}</td>
+                  <td className="border px-4 py-2">{r.cash ?? 0}</td>
+                  <td className="border px-4 py-2">{r.private ?? 0}</td>
+                  <td className="border px-4 py-2">{r.gov ?? 0}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+
+      {/* Download Buttons */}
+      {(sales.length > 0 || receipts.length > 0) && (
+        <div className="flex flex-col sm:flex-row flex-wrap gap-4">
           <button
-            onClick={fetchReports}
-            className="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700"
+            onClick={() => downloadFile('excel', 'sales')}
+            className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
           >
-            Get Report
+            Download Sales Excel
+          </button>
+          <button
+            onClick={() => downloadFile('pdf', 'sales')}
+            className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
+          >
+            Download Sales PDF
+          </button>
+          <button
+            onClick={() => downloadFile('excel', 'receipts')}
+            className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+          >
+            Download Receipts Excel
+          </button>
+          <button
+            onClick={() => downloadFile('pdf', 'receipts')}
+            className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
+          >
+            Download Receipts PDF
           </button>
         </div>
-
-        {loading && <p className="text-gray-500">Loading...</p>}
-
-        {sales.length > 0 && (
-          <div className="mb-6">
-            <h3 className="text-xl font-semibold mb-2">Sales Report</h3>
-            <table className="w-full table-auto border">
-              <thead className="bg-gray-400">
-                <tr>
-                  <th className="border px-4 py-2">District</th>
-                  <th className="border px-4 py-2">Date</th>
-                  <th className="border px-4 py-2">Cash</th>
-                  <th className="border px-4 py-2">Private</th>
-                  <th className="border px-4 py-2">Gov</th>
-                </tr>
-              </thead>
-              <tbody>
-                {sales.map((s, idx) => (
-                  <tr key={idx} className="font-semibold">
-                    <td className="border px-4 py-2">{s.district?.name}</td>
-                    <td className="border px-4 py-2">{s.date}</td>
-                    <td className="border px-4 py-2">{s.cash ?? 0}</td>
-<td className="border px-4 py-2">{s.private ?? 0}</td>
-<td className="border px-4 py-2">{s.gov ?? 0}</td>
-
-
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
-
-        {receipts.length > 0 && (
-          <div className="mb-6">
-            <h3 className="text-xl font-semibold mb-2">Receipts Report</h3>
-            <table className="w-full table-auto border">
-              <thead className="bg-gray-400">
-                <tr>
-                  <th className="border px-4 py-2">District</th>
-                  <th className="border px-4 py-2">Date</th>
-                  <th className="border px-4 py-2">Cash</th>
-                  <th className="border px-4 py-2">Private</th>
-                  <th className="border px-4 py-2">Gov</th>
-                </tr>
-              </thead>
-              <tbody>
-                {receipts.map((r, idx) => (
-                  <tr key={idx} className="font-semibold">
-                    <td className="border px-4 py-2">{r.district?.name}</td>
-                    <td className="border px-4 py-2">{r.date}</td>
-                    <td className="border px-4 py-2">{r.cash ?? 0}</td>
-<td className="border px-4 py-2">{r.private ?? 0}</td>
-<td className="border px-4 py-2">{r.gov ?? 0}</td>
-
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
-
-        {(sales.length > 0 || receipts.length > 0) && (
-          <div className="flex flex-wrap gap-4">
-            <button
-              onClick={() => downloadFile('excel', 'sales')}
-              className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
-            >
-              Download Sales Excel
-            </button>
-            <button
-              onClick={() => downloadFile('pdf', 'sales')}
-              className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
-            >
-              Download Sales PDF
-            </button>
-            <button
-              onClick={() => downloadFile('excel', 'receipts')}
-              className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
-            >
-              Download Receipts Excel
-            </button>
-            <button
-              onClick={() => downloadFile('pdf', 'receipts')}
-              className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
-            >
-              Download Receipts PDF
-            </button>
-          </div>
-        )}
-      </div>
+      )}
     </div>
-  );
+  </div>
+);
 };
 
 export default ReportsPage;

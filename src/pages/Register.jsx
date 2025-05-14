@@ -194,72 +194,160 @@ const Register = () => {
     }
   };
 
+  // return (
+  //   <div className="flex items-center justify-center min-h-screen bg-gradient-to-b from-purple-100 to-purple-900">
+  //     <form onSubmit={handleSubmit} className="bg-white p-6 rounded-2xl shadow-3xl w-full max-w-md space-y-4">
+  //       <h2 className="text-2xl font-bold mb-4 text-center">Register</h2>
+
+  //       {error && <div className="text-red-600">{error}</div>}
+  //       {success && <div className="text-green-600">{success}</div>}
+
+  //       <input
+  //         type="text"
+  //         name="name"
+  //         placeholder="Name"
+  //         value={form.name}
+  //         onChange={handleChange}
+  //         className="w-full px-3 py-2 border rounded"
+  //         required
+  //       />
+
+  //       <input
+  //         type="email"
+  //         name="email"
+  //         placeholder="Email"
+  //         value={form.email}
+  //         onChange={handleChange}
+  //         className="w-full px-3 py-2 border rounded"
+  //         required
+  //       />
+
+  //       <input
+  //         type="password"
+  //         name="password"
+  //         placeholder="Password"
+  //         value={form.password}
+  //         onChange={handleChange}
+  //         className="w-full px-3 py-2 border rounded"
+  //         required
+  //       />
+
+  //       <select
+  //         name="role"
+  //         value={form.role}
+  //         onChange={handleChange}
+  //         className="w-full px-3 py-2 border rounded"
+  //       >
+  //         <option value="user">User</option>
+  //         <option value="admin">Admin</option>
+  //       </select>
+
+  //       {form.role === 'admin' && (
+  //         <input
+  //           type="text"
+  //           name="adminSecret"
+  //           placeholder="Admin Secret"
+  //           value={form.adminSecret}
+  //           onChange={handleChange}
+  //           className="w-full px-3 py-2 border rounded"
+  //           required
+  //         />
+  //       )}
+
+  //       <select
+  //         name="branch"
+  //         value={form.branch}
+  //         onChange={handleChange}
+  //         className="w-full px-3 py-2 border rounded"
+  //         required
+  //       >
+  //         <option value="">Select Branch</option>
+  //         {branches.map((branch) => (
+  //           <option key={branch} value={branch}>
+  //             {branch}
+  //           </option>
+  //         ))}
+  //       </select>
+
+  //       <button
+  //         type="submit"
+  //         className="w-full bg-purple-700 text-white py-2 rounded hover:bg-purple-900"
+  //       >
+  //         Register
+  //       </button>
+  //     </form>
+  //   </div>
+  // );
+
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-b from-purple-100 to-purple-900">
-      <form onSubmit={handleSubmit} className="bg-white p-6 rounded-2xl shadow-3xl w-full max-w-md space-y-4">
-        <h2 className="text-2xl font-bold mb-4 text-center">Register</h2>
-
-        {error && <div className="text-red-600">{error}</div>}
-        {success && <div className="text-green-600">{success}</div>}
-
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-b from-purple-100 to-purple-900 px-4">
+      <form
+        onSubmit={handleSubmit}
+        className="bg-white p-6 sm:p-8 rounded-2xl shadow-xl w-full max-w-md space-y-5"
+      >
+        <h2 className="text-2xl font-bold text-center text-purple-800">Register</h2>
+  
+        {error && <p className="text-red-600 text-sm text-center">{error}</p>}
+        {success && <p className="text-green-600 text-sm text-center">{success}</p>}
+  
         <input
           type="text"
           name="name"
           placeholder="Name"
           value={form.name}
           onChange={handleChange}
-          className="w-full px-3 py-2 border rounded"
           required
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
         />
-
+  
         <input
           type="email"
           name="email"
           placeholder="Email"
           value={form.email}
           onChange={handleChange}
-          className="w-full px-3 py-2 border rounded"
           required
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
         />
-
+  
         <input
           type="password"
           name="password"
           placeholder="Password"
           value={form.password}
           onChange={handleChange}
-          className="w-full px-3 py-2 border rounded"
           required
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
         />
-
+  
         <select
           name="role"
           value={form.role}
           onChange={handleChange}
-          className="w-full px-3 py-2 border rounded"
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
         >
           <option value="user">User</option>
           <option value="admin">Admin</option>
         </select>
-
-        {form.role === 'admin' && (
+  
+        {form.role === "admin" && (
           <input
             type="text"
             name="adminSecret"
             placeholder="Admin Secret"
             value={form.adminSecret}
             onChange={handleChange}
-            className="w-full px-3 py-2 border rounded"
             required
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
           />
         )}
-
+  
         <select
           name="branch"
           value={form.branch}
           onChange={handleChange}
-          className="w-full px-3 py-2 border rounded"
           required
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
         >
           <option value="">Select Branch</option>
           {branches.map((branch) => (
@@ -268,10 +356,10 @@ const Register = () => {
             </option>
           ))}
         </select>
-
+  
         <button
           type="submit"
-          className="w-full bg-purple-700 text-white py-2 rounded hover:bg-purple-900"
+          className="w-full bg-purple-700 text-white py-2 rounded-lg font-semibold hover:bg-purple-800 transition"
         >
           Register
         </button>

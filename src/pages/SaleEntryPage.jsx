@@ -1012,9 +1012,107 @@ const getTotalAmount = () => {
   if (checkingPermission) return <p className="p-6">Checking permissions...</p>;
   if (!canSale) return <p className="p-6 text-red-600 font-semibold">You do not have permission to access this page.</p>;
 
+  // return (
+  //   <div className="p-6 bg-gray-200">
+  //     <h1 className="text-3xl font-bold mb-4">Sale Entry</h1>
+  
+  //     <label className="block mb-4 font-semibold">
+  //       Select Date:
+  //       <input
+  //         type="date"
+  //         value={selectedDate}
+  //         onChange={(e) => setSelectedDate(e.target.value)}
+  //         className="ml-2 border p-3 rounded-full shadow"
+  //       />
+  //     </label>
+  
+  //     {loading ? (
+  //       <p>Loading sales...</p>
+  //     ) : (
+  //       <table className="w-full mt-4 border border-gray-900">
+  //         <thead>
+  //           <tr className="bg-gray-400">
+  //             <th className="border p-2 text-left">District</th>
+  //             <th className="border p-2 text-left">Cash</th>
+  //             <th className="border p-2 text-left">Private</th>
+  //             <th className="border p-2 text-left">Gov</th>
+  //             <th className="border p-2">Actions</th>
+  //           </tr>
+  //         </thead>
+  //         <tbody>
+  //           {districts.map((d) => {
+  //             const districtData = formData[d.name] || {};
+  //             return (
+  //               <tr key={d._id}>
+  //                 <td className="border p-2 font-semibold">{d.name}</td>
+  
+  //                 {/* Cash */}
+  //                 <td className="border p-2">
+  //                   <input
+  //                     type="number"
+  //                     placeholder="Cash"
+  //                     value={districtData.cash || ''}
+  //                     onChange={(e) => handleChange(d.name, 'cash', e.target.value)}
+  //                     className="border p-1 rounded w-24"
+  //                   />
+  //                 </td>
+  
+  //                 {/* Private */}
+  //                 <td className="border p-2">
+  //                   <input
+  //                     type="number"
+  //                     placeholder="Private"
+  //                     value={districtData.private || ''}
+  //                     onChange={(e) => handleChange(d.name, 'private', e.target.value)}
+  //                     className="border p-1 rounded w-24"
+  //                   />
+  //                 </td>
+  
+  //                 {/* Gov */}
+  //                 <td className="border p-2">
+  //                   <input
+  //                     type="number"
+  //                     placeholder="Gov"
+  //                     value={districtData.gov || ''}
+  //                     onChange={(e) => handleChange(d.name, 'gov', e.target.value)}
+  //                     className="border p-1 rounded w-24"
+  //                   />
+  //                 </td>
+  
+  //                 {/* Actions */}
+  //                 <td className="border p-2 text-center">
+  //                   <button
+  //                     onClick={() => handleDelete(d.name)}
+  //                     className="text-sm bg-red-500 text-white px-2 py-1 rounded"
+  //                   >
+  //                     Delete
+  //                   </button>
+  //                 </td>
+  //               </tr>
+  //             );
+  //           })}
+  //         </tbody>
+  //         <tfoot>
+  //           <tr className="bg-gray-200 font-semibold">
+  //             <td className="border p-2 text-right bg-gray-400">Total</td>
+  //             <td className="border p-2 bg-gray-400">{getTotalAmount().toFixed(2)}</td>
+  //             <td className="border p-2 bg-gray-400" colSpan={3} />
+  //           </tr>
+  //         </tfoot>
+  //       </table>
+  //     )}
+  
+  //     <button
+  //       onClick={handleSubmit}
+  //       className="mt-4 bg-blue-600 text-white px-4 py-2 rounded-full"
+  //     >
+  //       Save Sales
+  //     </button>
+  //   </div>
+  // );
   return (
-    <div className="p-6 bg-gray-200">
-      <h1 className="text-3xl font-bold mb-4">Sale Entry</h1>
+    <div className="p-4 sm:p-6 bg-gray-200">
+      <h1 className="text-2xl sm:text-3xl font-bold mb-4">Sale Entry</h1>
   
       <label className="block mb-4 font-semibold">
         Select Date:
@@ -1022,89 +1120,83 @@ const getTotalAmount = () => {
           type="date"
           value={selectedDate}
           onChange={(e) => setSelectedDate(e.target.value)}
-          className="ml-2 border p-3 rounded-full shadow"
+          className="mt-2 sm:ml-2 border p-2 rounded-full shadow w-full sm:w-auto"
         />
       </label>
   
       {loading ? (
         <p>Loading sales...</p>
       ) : (
-        <table className="w-full mt-4 border border-gray-900">
-          <thead>
-            <tr className="bg-gray-400">
-              <th className="border p-2 text-left">District</th>
-              <th className="border p-2 text-left">Cash</th>
-              <th className="border p-2 text-left">Private</th>
-              <th className="border p-2 text-left">Gov</th>
-              <th className="border p-2">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {districts.map((d) => {
-              const districtData = formData[d.name] || {};
-              return (
-                <tr key={d._id}>
-                  <td className="border p-2 font-semibold">{d.name}</td>
-  
-                  {/* Cash */}
-                  <td className="border p-2">
-                    <input
-                      type="number"
-                      placeholder="Cash"
-                      value={districtData.cash || ''}
-                      onChange={(e) => handleChange(d.name, 'cash', e.target.value)}
-                      className="border p-1 rounded w-24"
-                    />
-                  </td>
-  
-                  {/* Private */}
-                  <td className="border p-2">
-                    <input
-                      type="number"
-                      placeholder="Private"
-                      value={districtData.private || ''}
-                      onChange={(e) => handleChange(d.name, 'private', e.target.value)}
-                      className="border p-1 rounded w-24"
-                    />
-                  </td>
-  
-                  {/* Gov */}
-                  <td className="border p-2">
-                    <input
-                      type="number"
-                      placeholder="Gov"
-                      value={districtData.gov || ''}
-                      onChange={(e) => handleChange(d.name, 'gov', e.target.value)}
-                      className="border p-1 rounded w-24"
-                    />
-                  </td>
-  
-                  {/* Actions */}
-                  <td className="border p-2 text-center">
-                    <button
-                      onClick={() => handleDelete(d.name)}
-                      className="text-sm bg-red-500 text-white px-2 py-1 rounded"
-                    >
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-          <tfoot>
-            <tr className="bg-gray-200 font-semibold">
-              <td className="border p-2 text-right bg-gray-400">Total</td>
-              <td className="border p-2 bg-gray-400">{getTotalAmount().toFixed(2)}</td>
-              <td className="border p-2 bg-gray-400" colSpan={3} />
-            </tr>
-          </tfoot>
-        </table>
+        <div className="overflow-x-auto">
+          <table className="min-w-full mt-4 border border-gray-900 text-sm sm:text-base">
+            <thead>
+              <tr className="bg-gray-400 text-left">
+                <th className="border p-2">District</th>
+                <th className="border p-2">Cash</th>
+                <th className="border p-2">Private</th>
+                <th className="border p-2">Gov</th>
+                <th className="border p-2 text-center">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {districts.map((d) => {
+                const districtData = formData[d.name] || {};
+                return (
+                  <tr key={d._id}>
+                    <td className="border p-2 font-semibold">{d.name}</td>
+                    <td className="border p-2">
+                      <input
+                        type="number"
+                        placeholder="Cash"
+                        value={districtData.cash || ''}
+                        onChange={(e) => handleChange(d.name, 'cash', e.target.value)}
+                        className="border p-1 rounded w-full sm:w-24"
+                      />
+                    </td>
+                    <td className="border p-2">
+                      <input
+                        type="number"
+                        placeholder="Private"
+                        value={districtData.private || ''}
+                        onChange={(e) => handleChange(d.name, 'private', e.target.value)}
+                        className="border p-1 rounded w-full sm:w-24"
+                      />
+                    </td>
+                    <td className="border p-2">
+                      <input
+                        type="number"
+                        placeholder="Gov"
+                        value={districtData.gov || ''}
+                        onChange={(e) => handleChange(d.name, 'gov', e.target.value)}
+                        className="border p-1 rounded w-full sm:w-24"
+                      />
+                    </td>
+                    <td className="border p-2 text-center">
+                      <button
+                        onClick={() => handleDelete(d.name)}
+                        className="text-sm bg-red-500 text-white px-3 py-1 rounded"
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+            <tfoot>
+              <tr className="bg-gray-300 font-semibold">
+                <td className="border p-2 text-right bg-gray-400">Total</td>
+                <td className="border p-2 bg-gray-400">{getTotalAmount().toFixed(2)}</td>
+                <td className="border p-2 bg-gray-400" colSpan={3}></td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
       )}
   
       <button
         onClick={handleSubmit}
-        className="mt-4 bg-blue-600 text-white px-4 py-2 rounded-full"
+        className="mt-4 bg-blue-600 text-white px-6 py-2 rounded-full w-full sm:w-auto"
       >
         Save Sales
       </button>

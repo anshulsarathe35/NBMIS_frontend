@@ -210,61 +210,121 @@ const AdminDashboard = () => {
     }
   };
 
+  // return (
+  //   <div className="p-6 bg-gray-200">
+  //     <h2 className="text-xl font-semibold mb-4">Admin Dashboard - User Permissions</h2>
+  //     <table className="w-full border">
+  //       <thead>
+  //         <tr className="bg-gray-100">
+  //           <th className="border p-2">Name</th>
+  //           <th className="border p-2">Email</th>
+  //           <th className="border p-2">Sale Access</th>
+  //           <th className="border p-2">Receipt Access</th>
+  //           <th className="border p-2">Report Access</th>
+  //           <th className="border p-2">Actions</th>
+  //         </tr>
+  //       </thead>
+  //       <tbody>
+  //         {users.map(user => (
+  //           <tr key={user._id}>
+  //             <td className="border p-2">{user.name}</td>
+  //             <td className="border p-2">{user.email}</td>
+  //             <td className="border p-2 text-center">
+  //               <input
+  //                 type="checkbox"
+  //                 checked={editedUsers[user._id]?.canSale || false}
+  //                 onChange={() => handleCheckboxChange(user._id, 'canSale')}
+  //                 className='size-5'
+  //               />
+  //             </td>
+  //             <td className="border p-2 text-center">
+  //               <input
+  //                 type="checkbox"
+  //                 checked={editedUsers[user._id]?.canReceipt || false}
+  //                 onChange={() => handleCheckboxChange(user._id, 'canReceipt')}
+  //                 className='size-5'
+  //               />
+  //             </td>
+  //             <td className="border p-2 text-center">
+  //               <input
+  //                 type="checkbox"
+  //                 checked={editedUsers[user._id]?.canReport || false}
+  //                 onChange={() => handleCheckboxChange(user._id, 'canReport')}
+  //                 className='size-5'
+  //               />
+  //             </td>
+  //             <td className="border p-2 text-center">
+  //               <button
+  //                 onClick={() => applyChanges(user._id)}
+  //                 className="bg-teal-600 text-white px-3 py-1 rounded hover:bg-teal-700"
+  //               >
+  //                 Apply
+  //               </button>
+  //             </td>
+  //           </tr>
+  //         ))}
+  //       </tbody>
+  //     </table>
+  //   </div>
+  // );
   return (
-    <div className="p-6 bg-gray-200">
-      <h2 className="text-xl font-semibold mb-4">Admin Dashboard - User Permissions</h2>
-      <table className="w-full border">
-        <thead>
-          <tr className="bg-gray-100">
-            <th className="border p-2">Name</th>
-            <th className="border p-2">Email</th>
-            <th className="border p-2">Sale Access</th>
-            <th className="border p-2">Receipt Access</th>
-            <th className="border p-2">Report Access</th>
-            <th className="border p-2">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map(user => (
-            <tr key={user._id}>
-              <td className="border p-2">{user.name}</td>
-              <td className="border p-2">{user.email}</td>
-              <td className="border p-2 text-center">
-                <input
-                  type="checkbox"
-                  checked={editedUsers[user._id]?.canSale || false}
-                  onChange={() => handleCheckboxChange(user._id, 'canSale')}
-                  className='size-5'
-                />
-              </td>
-              <td className="border p-2 text-center">
-                <input
-                  type="checkbox"
-                  checked={editedUsers[user._id]?.canReceipt || false}
-                  onChange={() => handleCheckboxChange(user._id, 'canReceipt')}
-                  className='size-5'
-                />
-              </td>
-              <td className="border p-2 text-center">
-                <input
-                  type="checkbox"
-                  checked={editedUsers[user._id]?.canReport || false}
-                  onChange={() => handleCheckboxChange(user._id, 'canReport')}
-                  className='size-5'
-                />
-              </td>
-              <td className="border p-2 text-center">
-                <button
-                  onClick={() => applyChanges(user._id)}
-                  className="bg-teal-600 text-white px-3 py-1 rounded hover:bg-teal-700"
-                >
-                  Apply
-                </button>
-              </td>
+    <div className="p-4 sm:p-6 bg-gray-100 min-h-screen">
+      <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">Admin Dashboard - User Permissions</h2>
+  
+      <div className="overflow-auto rounded-lg shadow-lg">
+        <table className="min-w-full bg-white border border-gray-300">
+          <thead>
+            <tr className="bg-purple-100 text-gray-700">
+              <th className="border border-gray-300 px-4 py-2 text-left">Name</th>
+              <th className="border border-gray-300 px-4 py-2 text-left">Email</th>
+              <th className="border border-gray-300 px-4 py-2 text-center">Sale Access</th>
+              <th className="border border-gray-300 px-4 py-2 text-center">Receipt Access</th>
+              <th className="border border-gray-300 px-4 py-2 text-center">Report Access</th>
+              <th className="border border-gray-300 px-4 py-2 text-center">Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {users.map((user) => (
+              <tr key={user._id} className="hover:bg-purple-50">
+                <td className="border px-4 py-2">{user.name}</td>
+                <td className="border px-4 py-2">{user.email}</td>
+                <td className="border px-4 py-2 text-center">
+                  <input
+                    type="checkbox"
+                    checked={editedUsers[user._id]?.canSale || false}
+                    onChange={() => handleCheckboxChange(user._id, 'canSale')}
+                    className="w-5 h-5 accent-purple-600"
+                  />
+                </td>
+                <td className="border px-4 py-2 text-center">
+                  <input
+                    type="checkbox"
+                    checked={editedUsers[user._id]?.canReceipt || false}
+                    onChange={() => handleCheckboxChange(user._id, 'canReceipt')}
+                    className="w-5 h-5 accent-purple-600"
+                  />
+                </td>
+                <td className="border px-4 py-2 text-center">
+                  <input
+                    type="checkbox"
+                    checked={editedUsers[user._id]?.canReport || false}
+                    onChange={() => handleCheckboxChange(user._id, 'canReport')}
+                    className="w-5 h-5 accent-purple-600"
+                  />
+                </td>
+                <td className="border px-4 py-2 text-center">
+                  <button
+                    onClick={() => applyChanges(user._id)}
+                    className="bg-purple-700 text-white px-4 py-1 rounded-md hover:bg-purple-800 transition"
+                  >
+                    Apply
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

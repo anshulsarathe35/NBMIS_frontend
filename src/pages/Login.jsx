@@ -27,31 +27,69 @@ const Login = () => {
     }
   };
 
+  // return (
+  //   <div className="flex items-center justify-center min-h-screen bg-gradient-to-b from-gray-100 to-purple-900">
+  //     <form
+  //       onSubmit={handleSubmit}
+  //       className="bg-white p-8 rounded-2xl shadow-3xl w-full max-w-md space-y-4"
+  //     >
+  //       <h2 className="text-xl font-bold text-center">Login</h2>
+  //       {error && <p className="text-red-600 text-sm">{error}</p>}
+  //       <input
+  //         type="email"
+  //         placeholder="Email"
+  //         className="w-full p-2 border rounded"
+  //         value={email}
+  //         onChange={(e) => setEmail(e.target.value)}
+  //         required
+  //       />
+  //       <input
+  //         type="password"
+  //         placeholder="Password"
+  //         className="w-full p-2 border rounded"
+  //         value={password}
+  //         onChange={(e) => setPassword(e.target.value)}
+  //         required
+  //       />
+  //       <button type="submit" className="w-full bg-purple-700 text-white py-2 rounded hover:bg-purple-900">
+  //         Login
+  //       </button>
+  //     </form>
+  //   </div>
+  // );
+
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-b from-gray-100 to-purple-900">
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-b from-gray-100 to-purple-900 px-4">
       <form
         onSubmit={handleSubmit}
-        className="bg-white p-8 rounded-2xl shadow-3xl w-full max-w-md space-y-4"
+        className="bg-white p-6 sm:p-8 rounded-2xl shadow-xl w-full max-w-sm space-y-5"
       >
-        <h2 className="text-xl font-bold text-center">Login</h2>
-        {error && <p className="text-red-600 text-sm">{error}</p>}
+        <h2 className="text-2xl font-bold text-center text-purple-800">Login</h2>
+  
+        {error && <p className="text-red-600 text-sm text-center">{error}</p>}
+  
         <input
           type="email"
           placeholder="Email"
-          className="w-full p-2 border rounded"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
         />
+  
         <input
           type="password"
           placeholder="Password"
-          className="w-full p-2 border rounded"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
         />
-        <button type="submit" className="w-full bg-purple-700 text-white py-2 rounded hover:bg-purple-900">
+  
+        <button
+          type="submit"
+          className="w-full bg-purple-700 text-white py-2 rounded-lg font-semibold hover:bg-purple-800 transition"
+        >
           Login
         </button>
       </form>
