@@ -186,7 +186,7 @@ const Register = () => {
         delete payload.adminSecret;
       }
 
-      const res = await axios.post('/api/auth/register', payload);
+      const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/auth/register`, payload);
       setSuccess(res.data.message);
       setTimeout(() => navigate('/login'), 1500);
     } catch (err) {
