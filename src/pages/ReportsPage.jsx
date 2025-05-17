@@ -1096,10 +1096,15 @@ const ReportsPage = () => {
                   const priv = s.private ?? 0;
                   const gov = s.gov ?? 0;
                   const total = cash + priv + gov;
+                  const formattedDate = new Date(s.date).toLocaleDateString('en-IN', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric',
+                  });
                   return (
                     <tr key={idx} className="font-semibold">
                       <td className="border px-4 py-2">{s.district?.name}</td>
-                      <td className="border px-4 py-2">{s.date}</td>
+                      <td className="border px-4 py-2">{formattedDate}</td>
                       <td className="border px-4 py-2">{cash}</td>
                       <td className="border px-4 py-2">{priv}</td>
                       <td className="border px-4 py-2">{gov}</td>
@@ -1142,10 +1147,15 @@ const ReportsPage = () => {
                   const priv = r.private ?? 0;
                   const gov = r.gov ?? 0;
                   const total = cash + priv + gov;
+                  const formattedDate = new Date(r.date).toLocaleDateString('en-IN', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric',
+                  });
                   return (
                     <tr key={idx} className="font-semibold">
                       <td className="border px-4 py-2">{r.district?.name}</td>
-                      <td className="border px-4 py-2">{r.date}</td>
+                      <td className="border px-4 py-2">{formattedDate}</td>
                       <td className="border px-4 py-2">{cash}</td>
                       <td className="border px-4 py-2">{priv}</td>
                       <td className="border px-4 py-2">{gov}</td>
