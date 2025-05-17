@@ -317,12 +317,37 @@ const ReceiptEntryPage = () => {
     calculateTotals(updatedReceipts);
   };
 
-  const handleDelete = (district) => {
-    const updatedReceipts = { ...receipts };
-    delete updatedReceipts[district];
-    setReceipts(updatedReceipts);
-    calculateTotals(updatedReceipts);
+  // const handleDelete = (district) => {
+  //   const updatedReceipts = { ...receipts };
+  //   delete updatedReceipts[district];
+  //   setReceipts(updatedReceipts);
+  //   calculateTotals(updatedReceipts);
+  // };
+
+  const handleDelete = async (district) => {
+    try {
+      const token = localStorage.getItem('token');
+      const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/receipt?date=${date}`);
+      const record = res.data.find((r) => r.district === district);
+  
+      if (record) {
+        await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/receipt/${record._id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+      }
+  
+      const updatedReceipts = { ...receipts };
+      delete updatedReceipts[district];
+      setReceipts(updatedReceipts);
+      calculateTotals(updatedReceipts);
+    } catch (err) {
+      console.error('Failed to delete receipt:', err);
+      alert('Error deleting receipt entry.');
+    }
   };
+  
 
   const handleSubmit = async () => {
     try {
@@ -399,7 +424,7 @@ const ReceiptEntryPage = () => {
                   <td className="border px-4 py-2">
                     <input
                       type="number"
-                      className="w-full sm:w-24 border px-2 py-1 rounded"
+                      className="input-no-spinner w-full sm:w-24 border px-2 py-1 rounded"
                       value={r.cash}
                       onChange={(e) => handleChange(d.name, 'cash', e.target.value)}
                     />
@@ -407,7 +432,7 @@ const ReceiptEntryPage = () => {
                   <td className="border px-4 py-2">
                     <input
                       type="number"
-                      className="w-full sm:w-24 border px-2 py-1 rounded"
+                      className="input-no-spinner w-full sm:w-24 border px-2 py-1 rounded"
                       value={r.private}
                       onChange={(e) => handleChange(d.name, 'private', e.target.value)}
                     />
@@ -415,7 +440,7 @@ const ReceiptEntryPage = () => {
                   <td className="border px-4 py-2">
                     <input
                       type="number"
-                      className="w-full sm:w-24 border px-2 py-1 rounded"
+                      className="input-no-spinner w-full sm:w-24 border px-2 py-1 rounded"
                       value={r.gov}
                       onChange={(e) => handleChange(d.name, 'gov', e.target.value)}
                     />

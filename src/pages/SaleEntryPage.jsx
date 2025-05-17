@@ -1097,7 +1097,7 @@ const getTotalAmount = () => {
               placeholder="Cash"
               value={districtData.cash || ''}
               onChange={(e) => handleChange(d.name, 'cash', e.target.value)}
-              className="border p-1 rounded w-full sm:w-24"
+              className="input-no-spinner border p-1 rounded w-full sm:w-24"
             />
           </td>
           <td className="border p-2">
@@ -1106,7 +1106,7 @@ const getTotalAmount = () => {
               placeholder="Private"
               value={districtData.private || ''}
               onChange={(e) => handleChange(d.name, 'private', e.target.value)}
-              className="border p-1 rounded w-full sm:w-24"
+              className="input-no-spinner border p-1 rounded w-full sm:w-24"
             />
           </td>
           <td className="border p-2">
@@ -1115,7 +1115,7 @@ const getTotalAmount = () => {
               placeholder="Gov"
               value={districtData.gov || ''}
               onChange={(e) => handleChange(d.name, 'gov', e.target.value)}
-              className="border p-1 rounded w-full sm:w-24"
+              className="input-no-spinner border p-1 rounded w-full sm:w-24"
             />
           </td>
           <td className="border p-2 font-semibold text-right">

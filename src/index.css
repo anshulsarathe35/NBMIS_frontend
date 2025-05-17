@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* tailwind.css or your global stylesheet */
+.input-no-spinner::-webkit-outer-spin-button,
+.input-no-spinner::-webkit-inner-spin-button {
+  @apply appearance-none; /* Tailwind utility */
+  margin: 0;
+}
+
+.input-no-spinner {
+  -moz-appearance: textfield;
+}
