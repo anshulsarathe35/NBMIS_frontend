@@ -106,6 +106,7 @@ import SaleEntryPage from './pages/SaleEntryPage';
 import ReceiptEntryPage from './pages/ReceiptEntryPage';
 import ReportsPage from './pages/ReportsPage';
 import AdminDashboard from './pages/AdminDashboard'
+import BranchReportsPage from './pages/BranchReports';
 
 // Optional placeholder components (can be removed if unused)
 const Sales = () => <div className="p-6">Sales Page</div>;
@@ -157,6 +158,14 @@ const App = () => {
           element={
             <PrivateRoute>
               <DistrictPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/branch-reports"
+          element={
+            <PrivateRoute>
+              <BranchReportsPage />
             </PrivateRoute>
           }
         />
