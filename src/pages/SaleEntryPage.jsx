@@ -1011,69 +1011,7 @@ const getTotalAmount = () => {
         <p>Loading sales...</p>
       ) : (
         <div className="overflow-x-auto">
-          {/* <table className="min-w-full mt-4 border border-gray-900 text-sm sm:text-base">
-            <thead>
-              <tr className="bg-gray-400 text-left">
-                <th className="border p-2">District</th>
-                <th className="border p-2">Cash</th>
-                <th className="border p-2">Private</th>
-                <th className="border p-2">Gov</th>
-                <th className="border p-2 text-center">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {districts.map((d) => {
-                const districtData = formData[d.name] || {};
-                return (
-                  <tr key={d._id}>
-                    <td className="border p-2 font-semibold">{d.name}</td>
-                    <td className="border p-2">
-                      <input
-                        type="number"
-                        placeholder="Cash"
-                        value={districtData.cash || ''}
-                        onChange={(e) => handleChange(d.name, 'cash', e.target.value)}
-                        className="border p-1 rounded w-full sm:w-24"
-                      />
-                    </td>
-                    <td className="border p-2">
-                      <input
-                        type="number"
-                        placeholder="Private"
-                        value={districtData.private || ''}
-                        onChange={(e) => handleChange(d.name, 'private', e.target.value)}
-                        className="border p-1 rounded w-full sm:w-24"
-                      />
-                    </td>
-                    <td className="border p-2">
-                      <input
-                        type="number"
-                        placeholder="Gov"
-                        value={districtData.gov || ''}
-                        onChange={(e) => handleChange(d.name, 'gov', e.target.value)}
-                        className="border p-1 rounded w-full sm:w-24"
-                      />
-                    </td>
-                    <td className="border p-2 text-center">
-                      <button
-                        onClick={() => handleDelete(d.name)}
-                        className="text-sm bg-red-500 text-white px-3 py-1 rounded"
-                      >
-                        Delete
-                      </button>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-            <tfoot>
-              <tr className="bg-gray-300 font-semibold">
-                <td className="border p-2 text-right bg-gray-400">Total</td>
-                <td className="border p-2 bg-gray-400">{getTotalAmount().toFixed(2)}</td>
-                <td className="border p-2 bg-gray-400" colSpan={3}></td>
-              </tr>
-            </tfoot>
-          </table> */}
+         
           <table className="min-w-full mt-4 border border-gray-900 text-sm sm:text-base">
   <thead>
     <tr className="bg-gray-400 text-left">

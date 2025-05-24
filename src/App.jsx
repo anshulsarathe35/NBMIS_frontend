@@ -95,7 +95,7 @@
 // export default App;
 
 
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route , Navigate} from 'react-router-dom';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Home from './pages/Home';
@@ -108,6 +108,9 @@ import ReportsPage from './pages/ReportsPage';
 import AdminDashboard from './pages/AdminDashboard'
 import BranchReportsPage from './pages/BranchReports';
 
+import PublicRoute from './routes/PublicRoute';
+
+
 // Optional placeholder components (can be removed if unused)
 const Sales = () => <div className="p-6">Sales Page</div>;
 const Receipts = () => <div className="p-6">Receipts Page</div>;
@@ -119,8 +122,24 @@ const App = () => {
     <>
       <Navbar />
       <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} /> {/* ✅ Register Route */}
+        {/* <Route path="/login" element={<Login />} /> */}
+        <Route
+    path="/login"
+    element={
+      <PublicRoute>
+        <Login />
+      </PublicRoute>
+    }
+  />
+        {/* <Route path="/register" element={<Register />} /> ✅ Register Route */}
+        <Route
+    path="/register"
+    element={
+      <PublicRoute>
+        <Register />
+      </PublicRoute>
+    }
+  />
         <Route
           path="/"
           element={
@@ -177,7 +196,10 @@ const App = () => {
             <AdminDashboard/>
           </PrivateRoute>
         }/>
+        <Route path="*" element={<Navigate to="/" replace />} />
+
       </Routes>
+      
     </>
   );
 };
