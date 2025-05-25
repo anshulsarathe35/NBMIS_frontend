@@ -283,103 +283,199 @@ const Navbar = () => {
     navigate('/login');
   };
 
+  // return (
+  //   <nav className="bg-purple-900 text-white p-4">
+  //     <div className="flex items-center justify-between">
+  //       {/* Logo and Edition */}
+  //       <div className="flex items-center space-x-4">
+  //         <img src="/nblogo.webp" alt="logo" className=" rounded" />
+  //         {user && (
+  //           <span className="hidden sm:inline-block text-sm bg-white text-black rounded px-2 py-1 font-semibold">
+  //             Edition: {user.branch}
+  //           </span>
+  //         )}
+  //       </div>
+
+  //       {/* Mobile menu button */}
+  //       <button
+  //         className="md:hidden"
+  //         onClick={() => setMenuOpen(!menuOpen)}
+  //       >
+  //         {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+  //       </button>
+
+  //       {/* Desktop Links */}
+  //       <div className="hidden md:flex items-center space-x-4 font-semibold">
+  //         {user && (
+  //           <>
+  //             <Link to="/">Home</Link>
+  //             <Link to="/sale-entry">Sale</Link>
+  //             <Link to="/receipt-entry">Receipts</Link>
+  //             <Link to="/reports">Reports</Link>
+  //             <Link to="/districts">Districts</Link>
+  //             {user.role === 'admin' ? (
+  //               <Link to="/admin-dashboard">Admin Dashboard</Link>
+  //             ) : (
+  //               <Link to="/branch-reports">Branch Reports</Link>
+  //             )}
+  //           </>
+  //         )}
+  //       </div>
+
+  //       {/* Desktop Auth Info */}
+  //       <div className="hidden md:flex items-center space-x-4">
+  //         {user ? (
+  //           <>
+  //             <span className="text-sm font-semibold">Welcome, {user.name}</span>
+  //             <button
+  //               onClick={handleLogout}
+  //               className="hover:underline rounded-full font-semibold bg-white text-black px-3 py-2"
+  //             >
+  //               Logout
+  //             </button>
+  //           </>
+  //         ) : (
+  //           <>
+  //             <Link to="/login" className="hover:underline">Login</Link>
+  //             <Link to="/register" className="hover:underline">Register</Link>
+  //           </>
+  //         )}
+  //       </div>
+  //     </div>
+
+  //     {/* Mobile Dropdown */}
+  //     {menuOpen && (
+  //       <div className="md:hidden mt-4 flex flex-col space-y-3 font-semibold">
+  //         {user && (
+  //           <>
+  //             <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
+  //             <Link to="/sale-entry" onClick={() => setMenuOpen(false)}>Sale</Link>
+  //             <Link to="/receipt-entry" onClick={() => setMenuOpen(false)}>Receipts</Link>
+  //             <Link to="/reports" onClick={() => setMenuOpen(false)}>Reports</Link>
+  //             <Link to="/districts" onClick={() => setMenuOpen(false)}>Districts</Link>
+  //             {user.role === 'admin' ? (
+  //               <Link to="/admin-dashboard" onClick={() => setMenuOpen(false)}>Admin Dashboard</Link>
+  //             ) : (
+  //               <Link to="/branch-reports" onClick={() => setMenuOpen(false)}>Branch Reports</Link>
+  //             )}
+  //             <span className="text-sm">Welcome, {user.name}</span>
+  //             <button
+  //               onClick={() => {
+  //                 setMenuOpen(false);
+  //                 handleLogout();
+  //               }}
+  //               className="hover:underline rounded-full font-semibold bg-white text-black px-3 py-2"
+  //             >
+  //               Logout
+  //             </button>
+  //           </>
+  //         )}
+  //         {!user && (
+  //           <>
+  //             <Link to="/login" onClick={() => setMenuOpen(false)}>Login</Link>
+  //             <Link to="/register" onClick={() => setMenuOpen(false)}>Register</Link>
+  //           </>
+  //         )}
+  //       </div>
+  //     )}
+  //   </nav>
+  // );
   return (
-    <nav className="bg-purple-900 text-white p-4">
-      <div className="flex items-center justify-between">
-        {/* Logo and Edition */}
-        <div className="flex items-center space-x-4">
-          <img src="/nblogo.webp" alt="logo" className=" rounded" />
-          {user && (
-            <span className="hidden sm:inline-block text-sm bg-white text-black rounded px-2 py-1 font-semibold">
-              Edition: {user.branch}
-            </span>
-          )}
-        </div>
-
-        {/* Mobile menu button */}
-        <button
-          className="md:hidden"
-          onClick={() => setMenuOpen(!menuOpen)}
-        >
-          {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
-
-        {/* Desktop Links */}
-        <div className="hidden md:flex items-center space-x-4 font-semibold">
-          {user && (
-            <>
-              <Link to="/">Home</Link>
-              <Link to="/sale-entry">Sale</Link>
-              <Link to="/receipt-entry">Receipts</Link>
-              <Link to="/reports">Reports</Link>
-              <Link to="/districts">Districts</Link>
-              {user.role === 'admin' ? (
-                <Link to="/admin-dashboard">Admin Dashboard</Link>
-              ) : (
-                <Link to="/branch-reports">Branch Reports</Link>
-              )}
-            </>
-          )}
-        </div>
-
-        {/* Desktop Auth Info */}
-        <div className="hidden md:flex items-center space-x-4">
-          {user ? (
-            <>
-              <span className="text-sm font-semibold">Welcome, {user.name}</span>
-              <button
-                onClick={handleLogout}
-                className="hover:underline rounded-full font-semibold bg-white text-black px-3 py-2"
-              >
-                Logout
-              </button>
-            </>
-          ) : (
-            <>
-              <Link to="/login" className="hover:underline">Login</Link>
-              <Link to="/register" className="hover:underline">Register</Link>
-            </>
-          )}
-        </div>
+  <nav className="bg-purple-900 text-white p-4">
+    <div className="flex items-center justify-between">
+      {/* Logo and Edition */}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-4">
+        <img src="/nblogo.webp" alt="logo" className="rounded mb-1 sm:mb-0" />
+        {user && (
+          <span className="text-xl  text-white rounded px-2 py-1 font-bold mt-1 sm:mt-0">
+            Edition: {user.branch}
+          </span>
+        )}
       </div>
 
-      {/* Mobile Dropdown */}
-      {menuOpen && (
-        <div className="md:hidden mt-4 flex flex-col space-y-3 font-semibold">
-          {user && (
-            <>
-              <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
-              <Link to="/sale-entry" onClick={() => setMenuOpen(false)}>Sale</Link>
-              <Link to="/receipt-entry" onClick={() => setMenuOpen(false)}>Receipts</Link>
-              <Link to="/reports" onClick={() => setMenuOpen(false)}>Reports</Link>
-              <Link to="/districts" onClick={() => setMenuOpen(false)}>Districts</Link>
-              {user.role === 'admin' ? (
-                <Link to="/admin-dashboard" onClick={() => setMenuOpen(false)}>Admin Dashboard</Link>
-              ) : (
-                <Link to="/branch-reports" onClick={() => setMenuOpen(false)}>Branch Reports</Link>
-              )}
-              <span className="text-sm">Welcome, {user.name}</span>
-              <button
-                onClick={() => {
-                  setMenuOpen(false);
-                  handleLogout();
-                }}
-                className="hover:underline rounded-full font-semibold bg-white text-black px-3 py-2"
-              >
-                Logout
-              </button>
-            </>
-          )}
-          {!user && (
-            <>
-              <Link to="/login" onClick={() => setMenuOpen(false)}>Login</Link>
-              <Link to="/register" onClick={() => setMenuOpen(false)}>Register</Link>
-            </>
-          )}
-        </div>
-      )}
-    </nav>
-  );
+      {/* Mobile menu button */}
+      <button className="md:hidden" onClick={() => setMenuOpen(!menuOpen)}>
+        {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+      </button>
+
+      {/* Desktop Links */}
+      <div className="hidden md:flex items-center space-x-4 font-semibold">
+        {user && (
+          <>
+            <Link to="/">Home</Link>
+            <Link to="/sale-entry">Sale</Link>
+            <Link to="/receipt-entry">Receipts</Link>
+            <Link to="/reports">Reports</Link>
+            <Link to="/districts">Districts</Link>
+            {user.role === 'admin' ? (
+              <Link to="/admin-dashboard">Admin Dashboard</Link>
+            ) : (
+              <Link to="/branch-reports">Branch Reports</Link>
+            )}
+          </>
+        )}
+      </div>
+
+      {/* Desktop Auth Info */}
+      <div className="hidden md:flex items-center space-x-4">
+        {user ? (
+          <>
+            <span className="text-sm font-semibold">Welcome, {user.name}</span>
+            <button
+              onClick={handleLogout}
+              className="hover:underline rounded-full font-semibold bg-white text-black px-3 py-2"
+            >
+              Logout
+            </button>
+          </>
+        ) : (
+          <>
+            <Link to="/login" className="hover:underline">Login</Link>
+            <Link to="/register" className="hover:underline">Register</Link>
+          </>
+        )}
+      </div>
+    </div>
+
+    {/* Mobile Dropdown */}
+    {menuOpen && (
+      <div className="md:hidden mt-4 flex flex-col space-y-3 font-semibold">
+        {user && (
+          <>
+            <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
+            <Link to="/sale-entry" onClick={() => setMenuOpen(false)}>Sale</Link>
+            <Link to="/receipt-entry" onClick={() => setMenuOpen(false)}>Receipts</Link>
+            <Link to="/reports" onClick={() => setMenuOpen(false)}>Reports</Link>
+            <Link to="/districts" onClick={() => setMenuOpen(false)}>Districts</Link>
+            {user.role === 'admin' ? (
+              <Link to="/admin-dashboard" onClick={() => setMenuOpen(false)}>Admin Dashboard</Link>
+            ) : (
+              <Link to="/branch-reports" onClick={() => setMenuOpen(false)}>Branch Reports</Link>
+            )}
+            <span className="text-sm">Welcome, {user.name}</span>
+            <button
+              onClick={() => {
+                setMenuOpen(false);
+                handleLogout();
+              }}
+              className="hover:underline rounded-full font-semibold bg-white text-black px-3 py-2"
+            >
+              Logout
+            </button>
+          </>
+        )}
+        {!user && (
+          <>
+            <Link to="/login" onClick={() => setMenuOpen(false)}>Login</Link>
+            <Link to="/register" onClick={() => setMenuOpen(false)}>Register</Link>
+          </>
+        )}
+      </div>
+    )}
+  </nav>
+);
+
+
 };
 
 export default Navbar;
