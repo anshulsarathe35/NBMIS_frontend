@@ -1365,7 +1365,7 @@ const ReportsPage = () => {
         {loading && <p className="text-gray-500">Loading...</p>}
 
         {/* Sales Report */}
-        {sales.length > 0 && (
+        {/* {sales.length > 0 && (
           <div className="mb-6 overflow-x-auto">
             <h3 className="text-xl font-semibold mb-2">Sales Report</h3>
             <table className="min-w-full border table-auto text-sm sm:text-base">
@@ -1414,10 +1414,77 @@ const ReportsPage = () => {
               </tfoot>
             </table>
           </div>
-        )}
+        )} */}
+        {sales.length > 0 && (
+  <div className="mb-6 overflow-x-auto">
+    <h3 className="text-xl font-semibold mb-2">Sales Report</h3>
+    <table className="min-w-full border table-auto text-sm sm:text-base">
+      <thead className="bg-gray-400">
+        <tr>
+          {reportType === 'datewise' && <th className="border px-4 py-2">Date</th>}
+          <th className="border px-4 py-2">District</th>
+          <th className="border px-4 py-2">Cash</th>
+          <th className="border px-4 py-2">Private</th>
+          <th className="border px-4 py-2">Gov</th>
+          <th className="border px-4 py-2 text-right">Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        {(() => {
+          let lastDate = null;
+          let isGray = false;
+          return sales.map((s, idx) => {
+            const cash = s.cash ?? 0;
+            const priv = s.private ?? 0;
+            const gov = s.gov ?? 0;
+            const total = cash + priv + gov;
+            const formattedDate = new Date(s.date).toLocaleDateString('en-IN', {
+              day: '2-digit', month: '2-digit', year: 'numeric',
+            });
+
+            let showDate = true;
+            if (formattedDate === lastDate) {
+              showDate = false;
+            } else {
+              lastDate = formattedDate;
+              isGray = !isGray;
+            }
+
+            return (
+              <tr key={idx} className={`font-semibold ${isGray ? 'bg-blue-200' : 'bg-white'}`}>
+                {reportType === 'datewise' && (
+                  <td className="border px-4 py-2">
+                    {showDate ? formattedDate : ''}
+                  </td>
+                )}
+                <td className="border px-4 py-2">
+                  {typeof s.district === 'string' ? s.district : s.district?.name}
+                </td>
+                <td className="border px-4 py-2">{cash}</td>
+                <td className="border px-4 py-2">{priv}</td>
+                <td className="border px-4 py-2">{gov}</td>
+                <td className="border px-4 py-2 text-right">{total}</td>
+              </tr>
+            );
+          });
+        })()}
+      </tbody>
+      <tfoot className="bg-gray-300 font-bold">
+        <tr>
+          <td className="border px-4 py-2 text-right" colSpan={reportType === 'datewise' ? 2 : 1}>Totals:</td>
+          <td className="border px-4 py-2">{salesTotals.totalCash}</td>
+          <td className="border px-4 py-2">{salesTotals.totalPrivate}</td>
+          <td className="border px-4 py-2">{salesTotals.totalGov}</td>
+          <td className="border px-4 py-2 text-right">{salesTotals.grandTotal}</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+)}
+
 
         {/* Receipts Report */}
-        {receipts.length > 0 && (
+        {/* {receipts.length > 0 && (
           <div className="mb-6 overflow-x-auto">
             <h3 className="text-xl font-semibold mb-2">Receipts Report</h3>
             <table className="min-w-full border table-auto text-sm sm:text-base">
@@ -1466,7 +1533,74 @@ const ReportsPage = () => {
               </tfoot>
             </table>
           </div>
-        )}
+        )} */}
+        {receipts.length > 0 && (
+  <div className="mb-6 overflow-x-auto">
+    <h3 className="text-xl font-semibold mb-2">Receipts Report</h3>
+    <table className="min-w-full border table-auto text-sm sm:text-base">
+      <thead className="bg-gray-400">
+        <tr>
+          {reportType === 'datewise' && <th className="border px-4 py-2">Date</th>}
+          <th className="border px-4 py-2">District</th>
+          <th className="border px-4 py-2">Cash</th>
+          <th className="border px-4 py-2">Private</th>
+          <th className="border px-4 py-2">Gov</th>
+          <th className="border px-4 py-2 text-right">Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        {(() => {
+          let lastDate = null;
+          let isGray = false;
+          return receipts.map((r, idx) => {
+            const cash = r.cash ?? 0;
+            const priv = r.private ?? 0;
+            const gov = r.gov ?? 0;
+            const total = cash + priv + gov;
+            const formattedDate = new Date(r.date).toLocaleDateString('en-IN', {
+              day: '2-digit', month: '2-digit', year: 'numeric',
+            });
+
+            let showDate = true;
+            if (formattedDate === lastDate) {
+              showDate = false;
+            } else {
+              lastDate = formattedDate;
+              isGray = !isGray;
+            }
+
+            return (
+              <tr key={idx} className={`font-semibold ${isGray ? 'bg-blue-200' : 'bg-white'}`}>
+                {reportType === 'datewise' && (
+                  <td className="border px-4 py-2">
+                    {showDate ? formattedDate : ''}
+                  </td>
+                )}
+                <td className="border px-4 py-2">
+                  {typeof r.district === 'string' ? r.district : r.district?.name}
+                </td>
+                <td className="border px-4 py-2">{cash}</td>
+                <td className="border px-4 py-2">{priv}</td>
+                <td className="border px-4 py-2">{gov}</td>
+                <td className="border px-4 py-2 text-right">{total}</td>
+              </tr>
+            );
+          });
+        })()}
+      </tbody>
+      <tfoot className="bg-gray-300 font-bold">
+        <tr>
+          <td className="border px-4 py-2 text-right" colSpan={reportType === 'datewise' ? 2 : 1}>Totals:</td>
+          <td className="border px-4 py-2">{receiptsTotals.totalCash}</td>
+          <td className="border px-4 py-2">{receiptsTotals.totalPrivate}</td>
+          <td className="border px-4 py-2">{receiptsTotals.totalGov}</td>
+          <td className="border px-4 py-2 text-right">{receiptsTotals.grandTotal}</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+)}
+
 
         {/* Download Buttons */}
         {(sales.length > 0 || receipts.length > 0) && (

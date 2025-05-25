@@ -263,8 +263,11 @@ const ReceiptEntryPage = () => {
     fetchDistricts();
   }, []);
 
+  // const fetchReceipts = async () => {
+  //   const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/receipt?date=${date}`);
   const fetchReceipts = async () => {
-    const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/receipt?date=${date}`);
+  const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/receipt?date=${date}&branch=${branch}`);
+
     const receiptMap = {};
     let cash = 0, priv = 0, gov = 0;
 
@@ -457,11 +460,11 @@ const ReceiptEntryPage = () => {
                 </tr>
               );
             })}
-            <tr className="bg-gray-300">
+            <tr className="bg-gray-400">
               <td className="border px-4 py-2 text-right">Total</td>
-              <td className="border px-4 py-2 text-right">{totals.cash.toFixed(2)}</td>
-              <td className="border px-4 py-2 text-right">{totals.private.toFixed(2)}</td>
-              <td className="border px-4 py-2 text-right">{totals.gov.toFixed(2)}</td>
+              <td className="border px-4 py-2 text-left">{totals.cash.toFixed(2)}</td>
+              <td className="border px-4 py-2 text-left">{totals.private.toFixed(2)}</td>
+              <td className="border px-4 py-2 text-left">{totals.gov.toFixed(2)}</td>
               <td className="border px-4 py-2 text-right font-bold">{(totals.grand).toFixed(2)}</td>
               <td className="border px-4 py-2"></td>
             </tr>

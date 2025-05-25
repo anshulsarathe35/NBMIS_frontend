@@ -860,8 +860,9 @@ useEffect(() => {
 
   
   
-    axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/sale?date=${selectedDate}`)
-      .then(res => {
+    // axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/sale?date=${selectedDate}`)
+    axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/sale?date=${selectedDate}&branch=${branch}`)
+    .then(res => {
         const saleData = Array.isArray(res.data) ? res.data : [];
         setSales(saleData);
   
