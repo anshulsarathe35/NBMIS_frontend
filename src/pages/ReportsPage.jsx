@@ -1224,15 +1224,22 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const ReportsPage = () => {
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
+  // const [startDate, setStartDate] = useState('');
+  // const [endDate, setEndDate] = useState('');
   const [sales, setSales] = useState([]);
   const [receipts, setReceipts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [canReport, setCanReport] = useState(false);
   const [checkingPermission, setCheckingPermission] = useState(true);
   const [userBranch, setUserBranch] = useState('');
-  const [reportType, setReportType] = useState('datewise');
+  // const [reportType, setReportType] = useState('datewise');
+  const [reportFetched, setReportFetched] = useState(false);
+
+  const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD format
+
+const [reportType, setReportType] = useState("datewise");
+const [startDate, setStartDate] = useState(today);
+const [endDate, setEndDate] = useState(today);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -1259,6 +1266,7 @@ const ReportsPage = () => {
   if (!startDate || !endDate) return;
 
   setLoading(true);
+  setReportFetched(true);
   const token = localStorage.getItem('token');
   const endpoint =
     reportType === 'datewise'
@@ -1365,56 +1373,7 @@ const ReportsPage = () => {
         {loading && <p className="text-gray-500">Loading...</p>}
 
         {/* Sales Report */}
-        {/* {sales.length > 0 && (
-          <div className="mb-6 overflow-x-auto">
-            <h3 className="text-xl font-semibold mb-2">Sales Report</h3>
-            <table className="min-w-full border table-auto text-sm sm:text-base">
-              <thead className="bg-gray-400">
-                <tr>
-                  <th className="border px-4 py-2">District</th>
-                  {reportType === 'datewise' && <th className="border px-4 py-2">Date</th>}
-                  <th className="border px-4 py-2">Cash</th>
-                  <th className="border px-4 py-2">Private</th>
-                  <th className="border px-4 py-2">Gov</th>
-                  <th className="border px-4 py-2 text-right">Total</th>
-                </tr>
-              </thead>
-              <tbody>
-                {sales.map((s, idx) => {
-                  const cash = s.cash ?? 0;
-                  const priv = s.private ?? 0;
-                  const gov = s.gov ?? 0;
-                  const total = cash + priv + gov;
-                  const formattedDate = new Date(s.date).toLocaleDateString('en-IN', {
-                    day: '2-digit', month: '2-digit', year: 'numeric',
-                  });
-                  return (
-                    <tr key={idx} className="font-semibold">
-                      <td className="border px-4 py-2">
-  {typeof s.district === 'string' ? s.district : s.district?.name}
-</td>
-
-                      {reportType === 'datewise' && <td className="border px-4 py-2">{formattedDate}</td>}
-                      <td className="border px-4 py-2">{cash}</td>
-                      <td className="border px-4 py-2">{priv}</td>
-                      <td className="border px-4 py-2">{gov}</td>
-                      <td className="border px-4 py-2 text-right">{total}</td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-              <tfoot className="bg-gray-300 font-bold">
-                <tr>
-                  <td className="border px-4 py-2 text-right" colSpan={reportType === 'datewise' ? 2 : 1}>Totals:</td>
-                  <td className="border px-4 py-2">{salesTotals.totalCash}</td>
-                  <td className="border px-4 py-2">{salesTotals.totalPrivate}</td>
-                  <td className="border px-4 py-2">{salesTotals.totalGov}</td>
-                  <td className="border px-4 py-2 text-right">{salesTotals.grandTotal}</td>
-                </tr>
-              </tfoot>
-            </table>
-          </div>
-        )} */}
+      
         {sales.length > 0 && (
   <div className="mb-6 overflow-x-auto">
     <h3 className="text-xl font-semibold mb-2">Sales Report</h3>
@@ -1483,57 +1442,7 @@ const ReportsPage = () => {
 )}
 
 
-        {/* Receipts Report */}
-        {/* {receipts.length > 0 && (
-          <div className="mb-6 overflow-x-auto">
-            <h3 className="text-xl font-semibold mb-2">Receipts Report</h3>
-            <table className="min-w-full border table-auto text-sm sm:text-base">
-              <thead className="bg-gray-400">
-                <tr>
-                  <th className="border px-4 py-2">District</th>
-                  {reportType === 'datewise' && <th className="border px-4 py-2">Date</th>}
-                  <th className="border px-4 py-2">Cash</th>
-                  <th className="border px-4 py-2">Private</th>
-                  <th className="border px-4 py-2">Gov</th>
-                  <th className="border px-4 py-2 text-right">Total</th>
-                </tr>
-              </thead>
-              <tbody>
-                {receipts.map((r, idx) => {
-                  const cash = r.cash ?? 0;
-                  const priv = r.private ?? 0;
-                  const gov = r.gov ?? 0;
-                  const total = cash + priv + gov;
-                  const formattedDate = new Date(r.date).toLocaleDateString('en-IN', {
-                    day: '2-digit', month: '2-digit', year: 'numeric',
-                  });
-                  return (
-                    <tr key={idx} className="font-semibold">
-                      <td className="border px-4 py-2">
-  {typeof r.district === 'string' ? r.district : r.district?.name}
-</td>
-
-                      {reportType === 'datewise' && <td className="border px-4 py-2">{formattedDate}</td>}
-                      <td className="border px-4 py-2">{cash}</td>
-                      <td className="border px-4 py-2">{priv}</td>
-                      <td className="border px-4 py-2">{gov}</td>
-                      <td className="border px-4 py-2 text-right">{total}</td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-              <tfoot className="bg-gray-300 font-bold">
-                <tr>
-                  <td className="border px-4 py-2 text-right" colSpan={reportType === 'datewise' ? 2 : 1}>Totals:</td>
-                  <td className="border px-4 py-2">{receiptsTotals.totalCash}</td>
-                  <td className="border px-4 py-2">{receiptsTotals.totalPrivate}</td>
-                  <td className="border px-4 py-2">{receiptsTotals.totalGov}</td>
-                  <td className="border px-4 py-2 text-right">{receiptsTotals.grandTotal}</td>
-                </tr>
-              </tfoot>
-            </table>
-          </div>
-        )} */}
+       
         {receipts.length > 0 && (
   <div className="mb-6 overflow-x-auto">
     <h3 className="text-xl font-semibold mb-2">Receipts Report</h3>
@@ -1602,6 +1511,13 @@ const ReportsPage = () => {
 )}
 
 
+{reportFetched && !loading && sales.length === 0 && receipts.length === 0 && (
+  <div className="text-center text-red-600 font-medium mb-6">
+    No Sales or Receipts present for dates from{" "}
+    {new Date(startDate).toLocaleDateString('en-IN')} to{" "}
+    {new Date(endDate).toLocaleDateString('en-IN')}
+  </div>
+)}
         {/* Download Buttons */}
         {(sales.length > 0 || receipts.length > 0) && (
           <div className="flex flex-col sm:flex-row flex-wrap gap-4">
